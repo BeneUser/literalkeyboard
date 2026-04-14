@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qkooqrb2wy22"
-path="res://.godot/imported/LiteralBlackKey-Sheet.png-92f5a4dc31b6f805bb9fb661d51b23a6.ctex"
+uid="uid://b3frv4mcayfi1"
+path="res://.godot/imported/LiteralBlackKey.png-5261ae18868f079fb15d1559ede85002.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/LiteralBlackKey-Sheet.png"
-dest_files=["res://.godot/imported/LiteralBlackKey-Sheet.png-92f5a4dc31b6f805bb9fb661d51b23a6.ctex"]
+source_file="res://assets/LiteralBlackKey.png"
+dest_files=["res://.godot/imported/LiteralBlackKey.png-5261ae18868f079fb15d1559ede85002.ctex"]
 
 [params]
 

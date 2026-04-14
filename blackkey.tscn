@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dxttwogf8em7x"]
+
+[ext_resource type="Script" uid="uid://bve7auufhp2hi" path="res://key.gd" id="1_4mqnw"]
+[ext_resource type="Texture2D" uid="uid://b3frv4mcayfi1" path="res://assets/LiteralBlackKey.png" id="1_vs767"]
+[ext_resource type="Texture2D" uid="uid://b3vikiuvdbkww" path="res://assets/LiteralBlackKeyPressed.png" id="2_4mqnw"]
+
+[node name="Blackkey" type="Control" unique_id=603525735]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 60.0
+script = ExtResource("1_4mqnw")
+
+[node name="Unpressed" type="NinePatchRect" parent="." unique_id=278703654]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("1_vs767")
+region_rect = Rect2(0, 0, 16, 60)
+patch_margin_left = 6
+patch_margin_top = 13
+patch_margin_right = 4
+patch_margin_bottom = 10
+
+[node name="Pressed" type="NinePatchRect" parent="." unique_id=1997689654]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_4mqnw")
+region_rect = Rect2(0, 0, 16, 60)
+patch_margin_left = 6
+patch_margin_top = 13
+patch_margin_right = 4
+patch_margin_bottom = 10
