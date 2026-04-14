@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://bugc7fpdm0o5a"]
 
 [ext_resource type="Texture2D" uid="uid://de0gimujokytm" path="res://assets/LiteralKey.png" id="1_kxvhw"]
+[ext_resource type="Script" uid="uid://bve7auufhp2hi" path="res://key.gd" id="1_qeio1"]
 [ext_resource type="Texture2D" uid="uid://ffncvafi2tyu" path="res://assets/LiteralKeyPressed.png" id="2_qeio1"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_r7fg4"]
 frames = 2
+pause = true
 frame_0/texture = ExtResource("1_kxvhw")
 frame_1/texture = ExtResource("2_qeio1")
 frame_1/duration = 1.0
@@ -16,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qeio1")
 
 [node name="Front" type="NinePatchRect" parent="." unique_id=1270174910]
 layout_mode = 0
