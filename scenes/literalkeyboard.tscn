@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://b2u5sl8udsgtx"]
+
+[ext_resource type="PackedScene" uid="uid://bugc7fpdm0o5a" path="res://scenes/whitekey.tscn" id="1_y1bol"]
+[ext_resource type="PackedScene" uid="uid://dxttwogf8em7x" path="res://scenes/blackkey.tscn" id="2_vi2fw"]
+
+[node name="Control" type="Control" unique_id=1846378993]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Whitekey" parent="." unique_id=122809443 instance=ExtResource("1_y1bol")]
+layout_mode = 1
+offset_bottom = 97.0
+key = "M"
+
+[node name="Blackkey" parent="." unique_id=603525735 instance=ExtResource("2_vi2fw")]
+z_index = 1
+layout_mode = 0
+offset_left = 10.0
+offset_right = 25.0
+key = "K"
+
+[node name="Whitekey2" parent="." unique_id=1452715537 instance=ExtResource("1_y1bol")]
+layout_mode = 0
+offset_left = 19.0
+offset_right = 38.0
+offset_bottom = 97.0
+key = ","
+
+[node name="Blackkey2" parent="." unique_id=1445895418 instance=ExtResource("2_vi2fw")]
+z_index = 1
+layout_mode = 0
+offset_left = 33.0
+offset_right = 48.0
+key = "L"
+
+[node name="Whitekey3" parent="." unique_id=1934927839 instance=ExtResource("1_y1bol")]
+layout_mode = 0
+offset_left = 38.0
+offset_right = 57.0
+offset_bottom = 97.0
+key = "."

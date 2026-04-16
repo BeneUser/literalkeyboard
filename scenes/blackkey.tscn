@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dxttwogf8em7x"]
 
-[ext_resource type="Script" uid="uid://bve7auufhp2hi" path="res://key.gd" id="1_4mqnw"]
-[ext_resource type="Texture2D" uid="uid://b3frv4mcayfi1" path="res://assets/LiteralBlackKey.png" id="1_vs767"]
-[ext_resource type="Texture2D" uid="uid://b3vikiuvdbkww" path="res://assets/LiteralBlackKeyPressed.png" id="2_4mqnw"]
+[ext_resource type="Script" uid="uid://bve7auufhp2hi" path="res://scenes/key.gd" id="1_4mqnw"]
+[ext_resource type="Texture2D" uid="uid://bswt10pwasehv" path="res://assets/LiteralBlackKey.png" id="1_vs767"]
+[ext_resource type="Texture2D" uid="uid://3fwumitvs83s" path="res://assets/LiteralBlackKeyPressed.png" id="2_4mqnw"]
 
 [node name="Blackkey" type="Control" unique_id=603525735]
 layout_mode = 3
@@ -19,9 +19,9 @@ anchor_bottom = 1.0
 texture = ExtResource("1_vs767")
 region_rect = Rect2(0, 0, 16, 60)
 patch_margin_left = 6
-patch_margin_top = 13
+patch_margin_top = 18
 patch_margin_right = 4
-patch_margin_bottom = 10
+patch_margin_bottom = 13
 
 [node name="Pressed" type="NinePatchRect" parent="." unique_id=1997689654]
 visible = false

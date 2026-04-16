@@ -1,15 +1,16 @@
 [gd_scene format=3 uid="uid://bugc7fpdm0o5a"]
 
 [ext_resource type="Texture2D" uid="uid://de0gimujokytm" path="res://assets/LiteralKey.png" id="1_kxvhw"]
-[ext_resource type="Script" uid="uid://bve7auufhp2hi" path="res://key.gd" id="1_qeio1"]
+[ext_resource type="Script" uid="uid://bve7auufhp2hi" path="res://scenes/key.gd" id="1_qeio1"]
 [ext_resource type="Texture2D" uid="uid://ffncvafi2tyu" path="res://assets/LiteralKeyPressed.png" id="2_qeio1"]
+
+[sub_resource type="AudioStream" id="AudioStream_xsk1i"]
 
 [node name="Whitekey" type="Control" unique_id=122809443]
 layout_mode = 3
+anchors_preset = 0
 offset_right = 19.0
 offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("1_qeio1")
 
 [node name="Unpressed" type="NinePatchRect" parent="." unique_id=1270174910]
@@ -17,6 +18,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_kxvhw")
 region_rect = Rect2(0, 4, 32, 92)
 patch_margin_left = 6
@@ -36,3 +39,6 @@ patch_margin_left = 6
 patch_margin_top = 25
 patch_margin_right = 6
 patch_margin_bottom = 14
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1213044271]
+stream = SubResource("AudioStream_xsk1i")
