@@ -3,8 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://de0gimujokytm" path="res://assets/LiteralKey.png" id="1_kxvhw"]
 [ext_resource type="Script" uid="uid://bve7auufhp2hi" path="res://scenes/key.gd" id="1_qeio1"]
 [ext_resource type="Texture2D" uid="uid://ffncvafi2tyu" path="res://assets/LiteralKeyPressed.png" id="2_qeio1"]
-
-[sub_resource type="AudioStream" id="AudioStream_xsk1i"]
+[ext_resource type="AudioStream" uid="uid://cj5t10xkgeigu" path="res://audio/C4 Long V3.mp3" id="4_ix42e"]
 
 [node name="Whitekey" type="Control" unique_id=122809443]
 layout_mode = 3
@@ -41,4 +40,4 @@ patch_margin_right = 6
 patch_margin_bottom = 14
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1213044271]
-stream = SubResource("AudioStream_xsk1i")
+stream = ExtResource("4_ix42e")

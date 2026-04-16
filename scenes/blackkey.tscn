@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bve7auufhp2hi" path="res://scenes/key.gd" id="1_4mqnw"]
 [ext_resource type="Texture2D" uid="uid://bswt10pwasehv" path="res://assets/LiteralBlackKey.png" id="1_vs767"]
 [ext_resource type="Texture2D" uid="uid://3fwumitvs83s" path="res://assets/LiteralBlackKeyPressed.png" id="2_4mqnw"]
+[ext_resource type="AudioStream" uid="uid://1umpt4ftdnk3" path="res://audio/C#4 Long V3.mp3" id="4_e6o8j"]
 
 [node name="Blackkey" type="Control" unique_id=603525735]
 layout_mode = 3
@@ -35,3 +36,6 @@ patch_margin_left = 6
 patch_margin_top = 13
 patch_margin_right = 4
 patch_margin_bottom = 10
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=898841071]
+stream = ExtResource("4_e6o8j")
