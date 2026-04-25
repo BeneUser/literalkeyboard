@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://yue3gbmxwymx"
+path="res://.godot/imported/F#1 Long V3.mp3-92a9598f435faf5864d1bab1c1accbdc.mp3str"
+
+[deps]
+
+source_file="res://audio/F#1 Long V3.mp3"
+dest_files=["res://.godot/imported/F#1 Long V3.mp3-92a9598f435faf5864d1bab1c1accbdc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

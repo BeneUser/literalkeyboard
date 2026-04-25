@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://klgigdeo1ql"
+path="res://.godot/imported/A5 Long V3.mp3-5f4278b27c490f68888c4c2f4514d97d.mp3str"
+
+[deps]
+
+source_file="res://audio/A5 Long V3.mp3"
+dest_files=["res://.godot/imported/A5 Long V3.mp3-5f4278b27c490f68888c4c2f4514d97d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

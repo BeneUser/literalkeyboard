@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://su0fppnw4asd"
+path="res://.godot/imported/A6 Long V3.mp3-c514e878d74ce8977141cc132448a46f.mp3str"
+
+[deps]
+
+source_file="res://audio/A6 Long V3.mp3"
+dest_files=["res://.godot/imported/A6 Long V3.mp3-c514e878d74ce8977141cc132448a46f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

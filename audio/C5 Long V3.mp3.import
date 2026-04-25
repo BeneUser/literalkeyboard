@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://pvrx7x45vonw"
+path="res://.godot/imported/C5 Long V3.mp3-a2aeab389b3f4c498b794726bc10a8fc.mp3str"
+
+[deps]
+
+source_file="res://audio/C5 Long V3.mp3"
+dest_files=["res://.godot/imported/C5 Long V3.mp3-a2aeab389b3f4c498b794726bc10a8fc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

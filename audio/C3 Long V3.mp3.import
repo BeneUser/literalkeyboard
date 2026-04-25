@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbsltkphgousy"
+path="res://.godot/imported/C3 Long V3.mp3-7a14327a1859f2d59acac3bfdca2e09f.mp3str"
+
+[deps]
+
+source_file="res://audio/C3 Long V3.mp3"
+dest_files=["res://.godot/imported/C3 Long V3.mp3-7a14327a1859f2d59acac3bfdca2e09f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
