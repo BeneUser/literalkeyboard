@@ -11,7 +11,7 @@ data = PackedByteArray("SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjYyLjEyLjEwMAAAAAAAAAAA
 layout_mode = 3
 anchors_preset = 0
 offset_right = 19.0
-offset_bottom = 64.0
+offset_bottom = 98.0
 script = ExtResource("1_qeio1")
 
 [node name="Unpressed" type="NinePatchRect" parent="." unique_id=1270174910]

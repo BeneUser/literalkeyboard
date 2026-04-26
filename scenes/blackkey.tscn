@@ -5,9 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://3fwumitvs83s" path="res://assets/LiteralBlackKeyPressed.png" id="2_4mqnw"]
 
 [node name="Blackkey" type="Control" unique_id=603525735]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
-offset_right = 16.0
+offset_right = 15.0
 offset_bottom = 60.0
 script = ExtResource("1_4mqnw")
 
