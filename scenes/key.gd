@@ -9,12 +9,19 @@ var note_map : Array = ["C", "C#",
 						"A", "A#",
 						"B"]
 
+#Used to map from keyboard layout code to "physical_keycodes".
 var keyboard_map : Dictionary = {
 	#A       S        D        F        G       H        J        K        L        Ö        Ä
 	100: 65, 101: 83, 102: 68, 103: 70, 104: 71, 105: 72, 106: 74, 107: 75, 108: 76, 109: 59, 110: 39,
 		#Y       X        C        V        B        N       M        ,        .        -
 		000: 90, 001: 88, 002: 67, 003: 86, 004: 66, 005: 78, 006: 77, 007: 44, 008: 46, 009: 47}
 
+var key_rename_map : Dictionary = {
+	"QuoteLeft": "`", "Section": "§", "Apostrophe": "'", "Equal": "=",
+	"BracketLeft": "[", "BracketRight": "]", "Dollar": "$", "BackSlash": "\\", "Plus": "+",
+	"Semicolon": ";",
+	"Comma": ",", "Period": ".", "Minus": "-", "Slash": "/",
+	"Less": "<"}
 
 
 @onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
@@ -43,12 +50,18 @@ var is_pressed : bool = false
 
 func _ready() -> void:
 	load_sound()
+	
+	#Assign label, if this is a whitekey.
 	if white:
-		print(white)
 		keylabel = $Label
-		var keyboardlabel = DisplayServer.keyboard_get_label_from_physical(keyboard_map.get(keyID))
-		keylabel.text = OS.get_keycode_string(keyboardlabel)
-		print(keylabel.text)
+		var keycode = DisplayServer.keyboard_get_label_from_physical(keyboard_map.get(keyID))
+		var keystring = OS.get_keycode_string(keycode)
+		var keyboardlabel
+		if key_rename_map.has(keystring):
+			keyboardlabel = key_rename_map.get(keystring)
+		else:
+			keyboardlabel = keystring
+		keylabel.text = keyboardlabel
 
 func warp_from_next(octave : int, noteID : int):
 	#Returns warp_dict : Dictionary = {"warp-origin-octave" : 0, "warp-origin-node" : 0, "warp-factor" : 0.0}
@@ -101,11 +114,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			unpressed.visible = true
 			#Stop audio
 			audio_player.stop()
-	#if event is InputEventKey:
-	#	print(event.physical_keycode)
-	#	var keycode = DisplayServer.keyboard_get_keycode_from_physical(event.physical_keycode)
-	#	var label = DisplayServer.keyboard_get_label_from_physical(event.physical_keycode)
-	#	print(keycode)
-	#	print(label)
-	#	print(OS.get_keycode_string(keycode))
-	#	print(OS.get_keycode_string(label))
+	if event is InputEventKey:
+		print(event.physical_keycode)
+		var keycode = DisplayServer.keyboard_get_keycode_from_physical(event.physical_keycode)
+		var label = DisplayServer.keyboard_get_label_from_physical(event.physical_keycode)
+		print(keycode)
+		print(label)
+		print(OS.get_keycode_string(keycode))
+		print(OS.get_keycode_string(label))
