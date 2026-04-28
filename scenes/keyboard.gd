@@ -134,6 +134,9 @@ func spawn_packedkey(packedkey, keyID, octave, noteID, x, y, width, height):
 	key.position = Vector2(x, y)
 	key.size = Vector2(width, height)
 	
+	key.white = (keytype_map[noteID] == 0)
+		
+	
 	add_child(key)
 	keys[notesinoctave*octave+noteID] = key
 

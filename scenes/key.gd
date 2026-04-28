@@ -21,9 +21,12 @@ var keyboard_map : Dictionary = {
 @onready var unpressed : NinePatchRect = $Unpressed
 @onready var pressed : NinePatchRect = $Pressed
 
+var keylabel : Label
+
 @export var keyID : int
 @export var octave : int
 @export var noteID : int
+var white : bool
 
 #These should be more dynamically more centrally handled, 
 #depended how pitch of keys are distributed in a octave.
@@ -40,6 +43,12 @@ var is_pressed : bool = false
 
 func _ready() -> void:
 	load_sound()
+	if white:
+		print(white)
+		keylabel = $Label
+		var keyboardlabel = DisplayServer.keyboard_get_label_from_physical(keyboard_map.get(keyID))
+		keylabel.text = OS.get_keycode_string(keyboardlabel)
+		print(keylabel.text)
 
 func warp_from_next(octave : int, noteID : int):
 	#Returns warp_dict : Dictionary = {"warp-origin-octave" : 0, "warp-origin-node" : 0, "warp-factor" : 0.0}
