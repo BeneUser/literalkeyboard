@@ -29,11 +29,12 @@ var key_rename_map : Dictionary = {
 @onready var pressed : NinePatchRect = $Pressed
 
 var keylabel : Label
+var label_press_align : Vector2 = Vector2(-1, 5)
 
 @export var keyID : int
 @export var octave : int
 @export var noteID : int
-var white : bool
+var whitekey : bool
 
 #These should be more dynamically more centrally handled, 
 #depended how pitch of keys are distributed in a octave.
@@ -52,7 +53,7 @@ func _ready() -> void:
 	load_sound()
 	
 	#Assign label, if this is a whitekey.
-	if white:
+	if whitekey:
 		keylabel = $Label
 		var keycode = DisplayServer.keyboard_get_label_from_physical(keyboard_map.get(keyID))
 		var keystring = OS.get_keycode_string(keycode)
@@ -106,19 +107,17 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			is_pressed = true
 			unpressed.visible = false
 			pressed.visible = true
+			#Realign label if whitekey
+			if whitekey:
+				keylabel.position += label_press_align
 			#Play audio
 			audio_player.play()
 		if event.is_released():
 			is_pressed = false
 			pressed.visible = false
 			unpressed.visible = true
+			#Realign label if whitekey
+			if whitekey:
+				keylabel.position -= label_press_align
 			#Stop audio
 			audio_player.stop()
-	if event is InputEventKey:
-		print(event.physical_keycode)
-		var keycode = DisplayServer.keyboard_get_keycode_from_physical(event.physical_keycode)
-		var label = DisplayServer.keyboard_get_label_from_physical(event.physical_keycode)
-		print(keycode)
-		print(label)
-		print(OS.get_keycode_string(keycode))
-		print(OS.get_keycode_string(label))
