@@ -4,6 +4,11 @@
 [ext_resource type="Script" uid="uid://bve7auufhp2hi" path="res://scenes/key.gd" id="1_qeio1"]
 [ext_resource type="Texture2D" uid="uid://ffncvafi2tyu" path="res://assets/LiteralKeyPressed.png" id="2_qeio1"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ix42e"]
+line_spacing = 0.0
+font_size = 6
+font_color = Color(0.60784316, 0.6784314, 0.7176471, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_xsk1i"]
 line_spacing = 0.0
 font_size = 10
@@ -45,6 +50,17 @@ patch_margin_left = 6
 patch_margin_top = 25
 patch_margin_right = 6
 patch_margin_bottom = 14
+
+[node name="Note" type="Label" parent="." unique_id=681413919]
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+offset_left = 2.0
+offset_right = 10.0
+offset_bottom = 9.0
+label_settings = SubResource("LabelSettings_ix42e")
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="Label" type="Label" parent="." unique_id=1247917131]
 z_index = 2

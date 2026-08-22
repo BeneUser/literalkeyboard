@@ -29,6 +29,7 @@ var key_rename_map : Dictionary = {
 @onready var pressed : NinePatchRect = $Pressed
 
 var keylabel : Label
+var notelabel : Label
 var label_press_align : Vector2 = Vector2(-1, 5)
 
 @export var keyID : int
@@ -63,6 +64,12 @@ func _ready() -> void:
 		else:
 			keyboardlabel = keystring
 		keylabel.text = keyboardlabel
+	
+	#Assign notelabel, if this is the first key of an octave
+	#And (for now) if the key is a white key, which is the case for a normal piano layout.
+	if noteID == 0 and whitekey:
+		notelabel = $Note
+		notelabel.text = note_map[noteID] + str(octave)
 
 func warp_from_next(octave : int, noteID : int):
 	#Returns warp_dict : Dictionary = {"warp-origin-octave" : 0, "warp-origin-node" : 0, "warp-factor" : 0.0}
