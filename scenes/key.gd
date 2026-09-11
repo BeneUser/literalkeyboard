@@ -36,6 +36,7 @@ var label_press_align : Vector2 = Vector2(-1, 5)
 @export var octave : int
 @export var noteID : int
 var whitekey : bool
+var literal_pos : float
 
 #These should be more dynamically more centrally handled, 
 #depended how pitch of keys are distributed in a octave.
@@ -53,17 +54,7 @@ var is_pressed : bool = false
 func _ready() -> void:
 	load_sound()
 	
-	#Assign label, if this is a whitekey.
-	if whitekey:
-		keylabel = $Label
-		var keycode = DisplayServer.keyboard_get_label_from_physical(keyboard_map.get(keyID))
-		var keystring = OS.get_keycode_string(keycode)
-		var keyboardlabel
-		if key_rename_map.has(keystring):
-			keyboardlabel = key_rename_map.get(keystring)
-		else:
-			keyboardlabel = keystring
-		keylabel.text = keyboardlabel
+	relabel_key()
 	
 	#Assign notelabel, if this is the first key of an octave
 	#And (for now) if the key is a white key, which is the case for a normal piano layout.
@@ -108,8 +99,36 @@ func load_sound():
 	audio_player.pitch_scale = warp_dict.get("warp-factor")
 
 
+
+func is_pressable() -> bool:
+	return keyID != -1
+
+## Change which physical keyboard key presses this virtual key.
+## May be -1 to make the key unpressable.
+func change_to_key(keyID):
+	self.keyID = keyID
+	relabel_key()
+
+func relabel_key() -> void:
+	#Assign label, if this is a whitekey.
+	if whitekey:
+		keylabel = $Label
+		
+		#Add or remove label depending on if this key is currently pressable.
+		if is_pressable():
+			var keycode = DisplayServer.keyboard_get_label_from_physical(keyboard_map.get(keyID))
+			var keystring = OS.get_keycode_string(keycode)
+			var keyboardlabel
+			if key_rename_map.has(keystring):
+				keyboardlabel = key_rename_map.get(keystring)
+			else:
+				keyboardlabel = keystring
+			keylabel.text = keyboardlabel
+		else:
+			keylabel.text = ""
+
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.physical_keycode == keyboard_map.get(keyID):
+	if self.is_pressable() and event is InputEventKey and event.physical_keycode == keyboard_map.get(keyID):
 		if event.is_pressed() and !is_pressed:
 			is_pressed = true
 			unpressed.visible = false

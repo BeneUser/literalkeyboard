@@ -1,8 +1,15 @@
 extends Control
 
+@onready var position_slider: HSlider = $slider
+
+#Defines notespace
 var keys : Array
-@export var octaves = 8
+@export var octaves = 9
 @export var notesinoctave = 12
+@export var min_octavepos = 0
+@export var min_notepos = 9
+@export var max_octavepos = 8
+@export var max_notepos = 0
 
 #Defines pressable keyarea.
 @export var left_octavepos = 3
@@ -27,11 +34,34 @@ var TEST_blackkeyheight = 60
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	keys.resize(octaves*notesinoctave)
-	init_spawn()
+	init_spawn_keyboard()
 
 
+func init_spawn_keyboard() -> void:
+	var cur_octavepos = min_octavepos
+	var cur_notepos = min_notepos
+	
+	var newkeypacked
+	var cur_keywidth
+	var cur_keyheight
+	#Loop invariant: All keys < cur_pos have been spawned.
+	while cur_octavepos < max_octavepos or (cur_octavepos == max_octavepos and cur_notepos <= max_notepos):
+		if keytype_map[cur_notepos] == 0:
+			newkeypacked = packedwhitekey
+			cur_keywidth = TEST_whitekeywidth
+			cur_keyheight = TEST_whitekeyheight
+		else:
+			newkeypacked = packedblackkey
+			cur_keywidth = TEST_blackkeywidth
+			cur_keyheight = TEST_blackkeyheight
+		spawn_packedkey(newkeypacked, -1, cur_octavepos, cur_notepos, literal_pos(cur_octavepos, cur_notepos), 0, cur_keywidth, cur_keyheight)
+		
+		#Increment positions.
+		var inc = increment_notepos(cur_octavepos, cur_notepos)
+		cur_octavepos = inc[0]
+		cur_notepos = inc[1]
 
-func init_spawn() -> void:
+func init_spawn_old() -> void:
 	#current white-key spawning position on x-axis
 	var cur_xpos = 0
 	
@@ -107,6 +137,31 @@ func increment_notepos(octave, note) -> Array[int]:
 		octave += 1
 	return [octave, note]
 
+func decrement_notepos(octave, note) -> Array[int]:
+	note -= 1
+	if note < 0:
+		note = notesinoctave - 1
+		octave -= 1
+	return [octave, note]
+
+func literal_pos(octave, noteID) -> int:
+	#Check that given pos is not out of note space.
+	if not (min_octavepos <= octave and octave <= max_octavepos 
+		and min_notepos <= noteID and noteID <= max_notepos):
+		push_warning("Key at oct: " + str(octave) + ", noteID: " + str(noteID) + " is not in note space!")
+	
+	#Get how many white keys there are until the given position
+	var num_whitekeys_until_keyboard = keytype_map.count(0) * min_octavepos + keytype_map.slice(0, min_notepos).count(0)
+	var num_whitekeys = -num_whitekeys_until_keyboard + keytype_map.count(0) * octave + keytype_map.slice(0, noteID).count(0)
+	
+	#Get the literal position on the movable keyboard 
+	# dependent on if this is a white or black key.
+	var pos = num_whitekeys * TEST_whitekeywidth
+	if keytype_map[noteID] != 0:
+		pos -= int((TEST_blackkeywidth / 2.0) * (2-keytype_map[noteID])) #Shift spawning pos to the left
+	return pos
+
+
 func keyboardpos_black(pos) -> bool:
 	return pos % 200 >= 100
 
@@ -130,6 +185,7 @@ func spawn_packedkey(packedkey, keyID, octave, noteID, x, y, width, height):
 	key.keyID = keyID
 	key.octave = octave
 	key.noteID = noteID
+	key.literal_pos = literal_pos(octave, noteID)
 	
 	key.position = Vector2(x, y)
 	key.size = Vector2(width, height)
