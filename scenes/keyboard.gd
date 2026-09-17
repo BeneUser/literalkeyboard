@@ -31,6 +31,8 @@ var TEST_whitekeyheight = 97
 var TEST_blackkeywidth = 14
 var TEST_blackkeyheight = 60
 
+var STATIC_VIEWPORT_WIDTH = 320
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	keys.resize(octaves*notesinoctave)
@@ -146,8 +148,8 @@ func decrement_notepos(octave, note) -> Array[int]:
 
 func literal_pos(octave, noteID) -> int:
 	#Check that given pos is not out of note space.
-	if not (min_octavepos <= octave and octave <= max_octavepos 
-		and min_notepos <= noteID and noteID <= max_notepos):
+	if not (min_octavepos < octave or (octave == min_octavepos and min_notepos <= noteID) 
+		and (octave < max_octavepos or (octave == max_octavepos and noteID <= max_notepos))):
 		push_warning("Key at oct: " + str(octave) + ", noteID: " + str(noteID) + " is not in note space!")
 	
 	#Get how many white keys there are until the given position
@@ -168,7 +170,7 @@ func keyboardpos_black(pos) -> bool:
 func keyboardpos_less_equal(left, right) -> bool:
 	#Order: 100 - 000 - 101 - 001 - 102 - 002
 	return ((left % 100) <= (right % 100)) and (right - 100 != left)
-	keys
+
 func increment_keyboardpos(pos : int, new_key_black : bool) -> int:
 	#Order: 100 - 000 - 101 - 001 - 102 - 002
 	if (pos % 200 < 100 and !new_key_black) or (pos % 200 >= 100 and new_key_black):
@@ -199,3 +201,27 @@ func spawn_packedkey(packedkey, keyID, octave, noteID, x, y, width, height):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func update_literal_keyboard_position(value: float) -> void:
+	# Setup boundary pos.
+	var right_keyboard_end = literal_pos(max_octavepos, max_notepos)
+	if keytype_map[max_notepos] == 0:
+		right_keyboard_end += TEST_whitekeyheight
+	else:
+		right_keyboard_end += TEST_blackkeyheight
+	print(right_keyboard_end)
+	var max_distance_to_left = right_keyboard_end - STATIC_VIEWPORT_WIDTH
+	if max_distance_to_left < 0:
+		max_distance_to_left = 0
+	
+	# Get translation_distance for the keys d.
+	var d = value * max_distance_to_left 
+	
+	for key in keys: 
+		if key != null:
+			key.position.x = key.literal_pos-d
+			#print("Changing")
+			#print(value)
+
+func _on_slider_value_changed(value: float) -> void:
+	update_literal_keyboard_position(value)
